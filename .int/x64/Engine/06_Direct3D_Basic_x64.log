@@ -1,0 +1,15 @@
+﻿  compilation header save succeeded; see C:\Users\blues\Desktop\SGA_Programming\SGA_Lectures_Basic\06_Direct3D_Basic_x64\Shader\Bytecode\PixelShader.h
+  compilation object save succeeded; see C:\Users\blues\Desktop\SGA_Programming\SGA_Lectures_Basic\.lib\PixelShader.cso
+  compilation header save succeeded; see C:\Users\blues\Desktop\SGA_Programming\SGA_Lectures_Basic\06_Direct3D_Basic_x64\Shader\Bytecode\VertexShader.h
+  compilation object save succeeded; see C:\Users\blues\Desktop\SGA_Programming\SGA_Lectures_Basic\.lib\VertexShader.cso
+  Collision.cpp
+  Engine.cpp
+  Entry.cpp
+  Game.cpp
+  Input.cpp
+  Pipeline.cpp
+  Rendering.cpp
+  Resource.cpp
+  Sound.cpp
+  Time.cpp
+  06_Direct3D_Basic_x64.vcxproj -> C:\Users\blues\Desktop\SGA_Programming\SGA_Lectures_Basic\.lib\06_Direct3D_Basic_x64.lib

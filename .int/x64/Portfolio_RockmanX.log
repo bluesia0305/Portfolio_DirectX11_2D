@@ -1,0 +1,7 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: 중간 디렉터리(C:\Users\blues\Desktop\SGA_Programming\SGA_Lectures_Basic\.int\x64\)에 다른 프로젝트(Portfolio_2D.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
+  stdafx.cpp
+  Game.cpp
+  Object.cpp
+  Scene2.cpp
+  Scene1.cpp
+C:\Users\blues\Desktop\SGA_Programming\SGA_Lectures_Basic\Portfolio_RockmanX\Scenes\Scene1.cpp(12): fatal error C1075: '{': 일치하는 토큰을 찾을 수 없습니다.

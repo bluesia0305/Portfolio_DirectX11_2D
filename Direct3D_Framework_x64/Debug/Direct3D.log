@@ -1,0 +1,19 @@
+﻿  Engine.cpp
+  Entry.cpp
+C:\Users\blues\Desktop\Programming\Direct3D\Entry.cpp(30,4): error C2440: '초기화 중': 'const char [7]'에서 'LPCWSTR'(으)로 변환할 수 없습니다.
+C:\Users\blues\Desktop\Programming\Direct3D\Entry.cpp(30,4): message : 가리킨 형식이 관련이 없습니다. 변환하려면 reinterpret_cast, C 스타일 캐스트 또는 함수 스타일 캐스트가 필요합니다.
+C:\Users\blues\Desktop\Programming\Direct3D\Entry.cpp(49,4): error C2440: '초기화 중': 'const char [9]'에서 'LPCWSTR'(으)로 변환할 수 없습니다.
+C:\Users\blues\Desktop\Programming\Direct3D\Entry.cpp(49,4): message : 가리킨 형식이 관련이 없습니다. 변환하려면 reinterpret_cast, C 스타일 캐스트 또는 함수 스타일 캐스트가 필요합니다.
+C:\Users\blues\Desktop\Programming\Direct3D\Entry.cpp(50,4): error C2440: '초기화 중': 'const char [7]'에서 'LPCWSTR'(으)로 변환할 수 없습니다.
+C:\Users\blues\Desktop\Programming\Direct3D\Entry.cpp(50,4): message : 가리킨 형식이 관련이 없습니다. 변환하려면 reinterpret_cast, C 스타일 캐스트 또는 함수 스타일 캐스트가 필요합니다.
+C:\Users\blues\Desktop\Programming\Direct3D\Entry.cpp(62,41): error C2664: 'HWND FindWindowW(LPCWSTR,LPCWSTR)': 인수 1을(를) 'const char [7]'에서 'LPCWSTR'(으)로 변환할 수 없습니다.
+C:\Users\blues\Desktop\Programming\Direct3D\Entry.cpp(62,21): message : 가리킨 형식이 관련이 없습니다. 변환하려면 reinterpret_cast, C 스타일 캐스트 또는 함수 스타일 캐스트가 필요합니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\winuser.h(10057,1): message : 'FindWindowW' 선언을 참조하십시오.
+C:\Users\blues\Desktop\Programming\Direct3D\Entry.cpp(79,59): error C2664: 'HWND FindWindowW(LPCWSTR,LPCWSTR)': 인수 1을(를) 'const char [7]'에서 'LPCWSTR'(으)로 변환할 수 없습니다.
+C:\Users\blues\Desktop\Programming\Direct3D\Entry.cpp(79,39): message : 가리킨 형식이 관련이 없습니다. 변환하려면 reinterpret_cast, C 스타일 캐스트 또는 함수 스타일 캐스트가 필요합니다.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\winuser.h(10057,1): message : 'FindWindowW' 선언을 참조하십시오.
+  Input.cpp
+  Rendering.cpp
+  Sound.cpp
+  Time.cpp
+  코드를 생성하고 있습니다...

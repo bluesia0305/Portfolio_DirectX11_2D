@@ -1,0 +1,16 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: 중간 디렉터리(C:\Users\blues\Desktop\Portfolio_DirectX11_2D\.int\x64\Engine\)에 다른 프로젝트(06_Direct3D_Basic_x64.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
+  compilation header save succeeded; see C:\Users\blues\Desktop\Portfolio_DirectX11_2D\Direct3D_Framework_x64\Shader\Bytecode\PixelShader.h
+  compilation object save succeeded; see C:\Users\blues\Desktop\Portfolio_DirectX11_2D\.lib\PixelShader.cso
+  compilation header save succeeded; see C:\Users\blues\Desktop\Portfolio_DirectX11_2D\Direct3D_Framework_x64\Shader\Bytecode\VertexShader.h
+  compilation object save succeeded; see C:\Users\blues\Desktop\Portfolio_DirectX11_2D\.lib\VertexShader.cso
+  Collision.cpp
+  Engine.cpp
+  Entry.cpp
+  Game.cpp
+  Input.cpp
+  Pipeline.cpp
+  Rendering.cpp
+  Resource.cpp
+  Sound.cpp
+  Time.cpp
+  Direct3D_Framework_x64.vcxproj -> C:\Users\blues\Desktop\Portfolio_DirectX11_2D\.lib\Direct3D_Framework_x64.lib
