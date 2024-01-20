@@ -163,7 +163,11 @@ bool Level::Update()
 		isClosing = true;
 		INSTANCE(SoundManager)->Shutdown();
 		if (BGM->Content) BGM->Stop();
-		NextScene = "CustomLevel";
+
+		if (INSTANCE(SceneManager)->GetCurrentSceneName().find("Level") != std::string::npos)
+			NextScene = "IntroLevel";
+		else
+			NextScene = "CustomLevel";
 	}
 
 	// Player move & explosion
@@ -208,12 +212,16 @@ bool Level::Update()
 	if (CAMERA->IsCloseable() && !CAMERA->IsOpening())
 		if (Input::Get::Key::Down(VK_F12))
 		{
-			isStarted  = false;
+			isClosing = true;
 			isPlayable = false;
-			isClosing  = true;
 			INSTANCE(SoundManager)->Shutdown();
+
 			if (BGM->Content) BGM->Stop();
-			NextScene = "CustomLevel";
+
+			if (INSTANCE(SceneManager)->GetCurrentSceneName().find("Level") != std::string::npos)
+				NextScene = "IntroLevel";
+			else
+				NextScene = "CustomLevel";
 		}
 
 	if (isClosing)
@@ -360,6 +368,9 @@ void Level::AutoPlaySwitch()
 
 void Level::Restart()
 {
+	isStarted = false;
+	isPlayable = false;
+
 	if (BGM->Content)
 		BGM->GradualVolumeDown(1.0f);
 

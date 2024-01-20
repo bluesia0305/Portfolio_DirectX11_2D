@@ -9,14 +9,14 @@ IntroLevel::IntroLevel(unsigned short bpm, float movement_unit) : Scene(bpm, mov
 	BGM->Loop	 = true;
 
 	Map			 = new Map::IntroMap();
-	Portal1		 = new Object::APortal({  936, -72 }, "text_intro_nametag_level1", "portal_sample1", "(매우 어려움) 16비트 리듬을 즐길 수 있는 빠른 BPM의 노래");
-	Portal2		 = new Object::APortal({ 1440, -72 }, "text_intro_nametag_level2", "portal_sample2", "<Level2 임시 텍스트>");
+	Portal1		 = new Object::APortal({  936, -72 }, "text_intro_nametag_level1", "portal_kuku's_adventure", "빠른 BPM의 16비트 리듬을 즐길 수 있는 노래");
+	Portal2		 = new Object::APortal({ 1440, -72 }, "text_intro_nametag_level2", "portal_sample2", "Level2 임시 텍스트");
 	
 	MainTextures.push_back(new Object::ASimpleImage(Image::Component{ "text_intro_title",		  vector<2>{    0.0f,  210.0f }, vector<2>{ 479.808f, 140.04f }, VEC_ANGLE_NULL, 1.0f }));
 	MainTextures.push_back(new Object::ASimpleImage(Image::Component{ "text_intro_announcement",  vector<2>{  380.0f,  0.0f   }, vector<2>{ 349.344f, 56.376f }, VEC_ANGLE_NULL, 1.0f }));
-	SubTextures.push_back (new Object::ASimpleImage(Image::Component{ "text_intro_calibration",	  vector<2>{ -295.0f, -144.0f }, vector<2>{ 66.312f,  47.52f  }, VEC_ANGLE_NULL, 0.0f }));
+	//SubTextures.push_back (new Object::ASimpleImage(Image::Component{ "text_intro_calibration",	  vector<2>{ -295.0f, -144.0f }, vector<2>{ 66.312f,  47.52f  }, VEC_ANGLE_NULL, 0.0f }));
 	SubTextures.push_back (new Object::ASimpleImage(Image::Component{ "text_intro_leveleditor",	  vector<2>{ -360.0f,  144.0f }, vector<2>{ 184.824f, 47.52f  }, VEC_ANGLE_NULL, 0.0f }));
-	SubTextures.push_back (new Object::ASimpleImage(Image::Component{ "text_intro_customlevel",	  vector<2>{  355.0f,  144.0f }, vector<2>{ 184.824f, 47.52f  }, VEC_ANGLE_NULL, 0.0f }));
+	SubTextures.push_back (new Object::ASimpleImage(Image::Component{ "text_intro_customlevel",	  vector<2>{ -360.0f, -144.0f }, vector<2>{ 184.824f, 47.52f  }, VEC_ANGLE_NULL, 0.0f }));
 	SubTextures.push_back (new Object::ASimpleImage(Image::Component{ "text_intro_customsetting", vector<2>{  576.0f,  72.0f  }, vector<2>{ 184.824f, 47.52f  }, VEC_ANGLE_NULL, 0.0f }));
 	SubTextures.push_back (new Object::ASimpleImage(Image::Component{ "object_musedash_rin",	  vector<2>{  596.16f, 0.0f   }, vector<2>{ 89.8416f, 122.4f  }, VEC_ANGLE_NULL, 0.0f }));
 	SubTextures.push_back (new Object::ASimpleImage(Image::Component{ "object_musedash_marija",	  vector<2>{  522.0f, -48.24f }, vector<2>{ 83.2896f, 115.2f  }, VEC_ANGLE_NULL, 0.0f }));
@@ -168,9 +168,10 @@ bool IntroLevel::Update()
 	// Camera closer control / scene change
 	CAMERA->CameraOpening();
 	if (!L1Distance((Player->GetPosition() - vector<2>{  576, -72  }))) { BGM->Stop(); isClosing = true; NextScene = "Customizing"; }
-	if (!L1Distance((Player->GetPosition() - vector<2>{ -216, -144 }))) { BGM->Stop(); isClosing = true; NextScene = "Calibration"; }
+	if (!L1Distance((Player->GetPosition() - vector<2>{ -216, -144 }))) { BGM->Stop(); isClosing = true; NextScene = "CustomLevel"; }
 	if (!L1Distance((Player->GetPosition() - vector<2>{ -216,  144 }))) { BGM->Stop(); isClosing = true; NextScene = "LevelEditor"; }
-	if (!L1Distance((Player->GetPosition() - vector<2>{  216,  144 }))) { BGM->Stop(); isClosing = true; NextScene = "CustomLevel"; }
+	if (!L1Distance((Player->GetPosition() - vector<2>{  936, -72  }))) { BGM->Stop(); isClosing = true; NextScene = "Level1"; }
+	//if (!L1Distance((Player->GetPosition() - vector<2>{ 1440, -72  }))) { BGM->Stop(); isClosing = true; NextScene = "Level2"; }
 	if (isClosing)
 		if (!CAMERA->CameraClosing()) INSTANCE(SceneManager)->ChangeScene(NextScene);
 	CAMERA->PresentCameraCloser();

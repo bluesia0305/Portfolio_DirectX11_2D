@@ -62,5 +62,5 @@ public :
 	void UpdateLevel(std::string file_basename);
 
 	bool ImportPlayer();
-	bool ImportLevel(std::string file_basename);
+	bool ImportLevel(std::string file_basename, std::string sub_directory_name);
 };

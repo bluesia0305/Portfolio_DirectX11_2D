@@ -21,9 +21,6 @@
     <ClInclude Include="Scenes\IntroLevel.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\Calibration.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Collision.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -147,9 +144,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Scenes\IntroLevel.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\Calibration.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Managers\Game.cpp">

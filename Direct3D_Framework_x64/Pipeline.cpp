@@ -102,9 +102,9 @@ namespace Pipeline
 				HDC hdc = HDC();
 				MUST(surface->GetDC(false, &hdc));
 				{
+					SetBkMode(hdc, TRANSPARENT);
 					if (hFont != HFONT()) SelectObject(hdc, hFont);
 					SetTextColor(hdc, color);
-					
 					RECT area
 					{
 						center.x - size.cx / 2,

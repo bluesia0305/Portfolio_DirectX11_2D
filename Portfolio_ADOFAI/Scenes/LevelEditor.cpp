@@ -163,13 +163,20 @@ bool LevelEditor::Update()
 			isStarted  = false;
 			isPlayable = false;
 			isClosing  = true;
+			isEnded = false;
+
 			if (BGM->Content) BGM->Stop();
+			SOUND("LevelClear")->Stop();
+			OperationMode = OPERATION_MODE::EDIT_MODE;
 			INSTANCE(SoundManager)->Shutdown();
 			NextScene = "IntroLevel";
+
+			Start();
 		}
 
 	if (isClosing)
 	{
+		isCameraFollow = false;
 		if (NextScene != "")
 		{
 			if (!CAMERA->CameraClosing())
@@ -195,7 +202,7 @@ void LevelEditor::End()
 	OperationMode = OPERATION_MODE::EDIT_MODE;
 	isClosing = false;
 	Player->End();
-	INSTANCE(SceneManager)->GenerateCustomLevel();
+	INSTANCE(SceneManager)->GenerateCustomLevels();
 
 	ResetLevel();
 }
@@ -767,7 +774,7 @@ void LevelEditor::Import()
 
 	if (filename != "")
 	{
-		if (INSTANCE(DataManager)->ImportLevel(filename))
+		if (INSTANCE(DataManager)->ImportLevel(filename, "CustomLevels"))
 		{
 			ContentBGM	  = INSTANCE(DataManager)->LevelInfo->ContentBGM	== "__NULL__" ? "" : INSTANCE(DataManager)->LevelInfo->ContentBGM;
 			ContentBG	  = INSTANCE(DataManager)->LevelInfo->ContentBG		== "__NULL__" ? "" : INSTANCE(DataManager)->LevelInfo->ContentBG;

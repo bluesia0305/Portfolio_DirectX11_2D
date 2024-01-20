@@ -14,11 +14,10 @@ Map::IntroMap::IntroMap()
 
 	// Entrance tiles
 	{
-		Tiles.push_back(new Object::AEntranceTile(CONTENT_SQUARE_TILE,	   vector<2>{ -216,  144 }));		// Level Editor
-		Tiles.push_back(new Object::AEntranceTile(CONTENT_SQUARE_TILE,	   vector<2>{  216,  144 }));		// Custom Level
-		Tiles.push_back(new Object::AEntranceTile(CONTENT_SQUARE_TILE,	   vector<2>{ -216, -144 }));		// Calibration
-		Tiles.push_back(new Object::AEntranceTile(CONTENT_SQUARE_TILE,	   vector<2>{  936, -72 }));		// Level1
-		Tiles.push_back(new Object::AEntranceTile(CONTENT_SQUARE_TILE,	   vector<2>{ 1440, -72 }));		// Level2
+		Tiles.push_back(new Object::AEntranceTile(CONTENT_SQUARE_TILE,	 vector<2>{ -216,  144 }));		// Level Editor
+		Tiles.push_back(new Object::AEntranceTile(CONTENT_SQUARE_TILE,	 vector<2>{ -216, -144 }));		// Custom Level
+		Tiles.push_back(new Object::AEntranceTile(CONTENT_SQUARE_TILE,	 vector<2>{  936, -72 }));		// Level1
+		Tiles.push_back(new Object::AEntranceTile(CONTENT_SQUARE_TILE,	 vector<2>{ 1440, -72 }));		// Level2
 		Tiles.push_back(new Object::AMuseDashTile("tile_crystal_musedash", vector<2>{  576, -72 }));		// Muse Dash
 	}
 

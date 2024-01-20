@@ -110,6 +110,8 @@ void CameraManager::Update()
 		elem.ZoomScale = VEC_UNIT_SQUARE / Camera.ZoomScale[0];
 	}
 
+	CameraCloser.Position = Camera.Position - vector<2>{ 640.0f, 0.0f };
+
 	// Draw
 	Camera.Set();
 	Backgr.Draw();
@@ -159,7 +161,7 @@ bool CameraManager::CameraClosing()
 {
 	if (isCloseable)
 	{
-		CameraCloser.Position   = Destination + vector<2>{ VEC_LENGTH_SCREEN[0] / 2.0f, 0.0f };
+		//CameraCloser.Position   = Destination + vector<2>{ VEC_LENGTH_SCREEN[0] / 2.0f, 0.0f };
 		CameraCloser.Length		= { 0, VEC_LENGTH_SCREEN[1] };
 		CameraCloser.AlphaLevel = 1.0f;
 		isFadeable  = false;
@@ -170,10 +172,9 @@ bool CameraManager::CameraClosing()
 
 	if (isClosing)
 	{
-		if (CameraCloser.Position[0] > Destination[0] - VEC_LENGTH_SCREEN[0])
+		if (CameraCloser.Length[0] < 3000.0f)
 		{
 			CameraCloser.Length[0]   += CAMERA_CLOSING_EXPAND_SPEED * DELTA_TIME;
-			CameraCloser.Position[0] -= CAMERA_CLOSING_MOVE_SPEED   * DELTA_TIME;
 		}
 		else
 		{
@@ -188,8 +189,7 @@ bool CameraManager::CameraOpening()
 {
 	if (isOpenable)
 	{
-		CameraCloser.Position	= Destination - vector<2>{ VEC_LENGTH_SCREEN[0] / 2.0f, 0 };
-		CameraCloser.Length[0]	= VEC_LENGTH_SCREEN[0];
+		CameraCloser.Length[0]	= 2 * VEC_LENGTH_SCREEN[0];
 		CameraCloser.AlphaLevel = 1.0f;
 		isOpenable = false;
 		isOpening  = true;
@@ -201,7 +201,6 @@ bool CameraManager::CameraOpening()
 		if (CameraCloser.Length[0] > 0.0f)
 		{
 			CameraCloser.Length[0]   -= CAMERA_OPENING_SHRINK_SPEED * DELTA_TIME;
-			CameraCloser.Position[0] -= CAMERA_OPENING_MOVE_SPEED   * DELTA_TIME;
 		}
 		else
 		{
@@ -219,8 +218,8 @@ bool CameraManager::CameraFadeIn()
 {
 	if (isFadeable)
 	{
-		CameraCloser.Position   = Destination;
-		CameraCloser.Length		= VEC_LENGTH_SCREEN;
+		CameraCloser.Length[0]	= 2 * VEC_LENGTH_SCREEN[0];
+		CameraCloser.Length[1]	= VEC_LENGTH_SCREEN[1];
 		CameraCloser.AlphaLevel = 1.0f;
 		isFadingIn  = true;
 		isFadeable  = false;

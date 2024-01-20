@@ -23,7 +23,7 @@ Customizing::Customizing(unsigned short bpm, float movement_unit) : Scene(bpm, m
 	Mokokos[5]	  = new Object::ASimpleImage(Image::Component{ "planet_mokoko_pink",	 {  288, -72  }, VEC_LENGTH_PLANET,		VEC_ANGLE_NULL, 0.5f });
 	Mokokos[6]	  = new Object::ASimpleImage(Image::Component{ "planet_mokoko_soda",	 {  288,  0   }, VEC_LENGTH_PLANET,		VEC_ANGLE_NULL, 0.5f });
 	Mokokos[7]	  = new Object::ASimpleImage(Image::Component{ "planet_mokoko_soda",	 {  288,  72  }, VEC_LENGTH_PLANET,		VEC_ANGLE_NULL, 0.5f });
-	Rotation	  = new Object::ARotatingImage(Image::Component{ "icon_swirl_blue",		 {    0,  144 }, { 74.8f, 74.8f },		VEC_ANGLE_NULL, 1.0f });
+	Rotation	  = new Object::ARotatingImage(Image::Component{ "icon_swirl_red",		 {    0,  144 }, { 74.8f, 74.8f },		VEC_ANGLE_NULL, 1.0f });
 	CometTail	  = new ObjectPool<Object::ACometTail>;
 }
 

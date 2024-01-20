@@ -302,39 +302,39 @@ namespace Rendering
 	{
 		switch (uMsg)
 		{
-		case WM_CREATE:
-		{
-			Pipeline::Procedure(hWnd, uMsg, wParam, lParam);
-			Resource::Import("Resources/Fonts", Text::Import);
-			FreeImage_Initialise();
+			case WM_CREATE:
 			{
-				Resource::Import("Resources/Images", Image::Import);
-				Resource::Import("Resources/Animations", Animation::Import);
-				Resource::Import("Resources/Backgrounds", Background::Import);
+				Pipeline::Procedure(hWnd, uMsg, wParam, lParam);
+				Resource::Import("Resources/Fonts", Text::Import);
+				FreeImage_Initialise();
+				{
+					Resource::Import("Resources/Images", Image::Import);
+					Resource::Import("Resources/Animations", Animation::Import);
+					Resource::Import("Resources/Backgrounds", Background::Import);
+				}
+				FreeImage_DeInitialise();
+				return;
 			}
-			FreeImage_DeInitialise();
-			return;
-		}
 
-		case WM_SIZE:
-		{
-			Pipeline::Procedure(hWnd, uMsg, wParam, lParam);
-			return;
-		}
+			case WM_SIZE:
+			{
+				Pipeline::Procedure(hWnd, uMsg, wParam, lParam);
+				return;
+			}
 
-		case WM_APP:
-		{
-			Pipeline::Procedure(hWnd, uMsg, wParam, lParam);
-			return;
-		}
+			case WM_APP:
+			{
+				Pipeline::Procedure(hWnd, uMsg, wParam, lParam);
+				return;
+			}
 
-		case WM_DESTROY:
-		{
-			Pipeline::Procedure(hWnd, uMsg, wParam, lParam);
-			for (auto const& pair : Image::Storage)		Pipeline::Texture::Delete(pair.second.Handle);
-			for (auto const& pair : Animation::Storage)	Pipeline::Texture::Delete(pair.second.Handle);
-			return;
-		}
+			case WM_DESTROY:
+			{
+				Pipeline::Procedure(hWnd, uMsg, wParam, lParam);
+				for (auto const& pair : Image::Storage)		Pipeline::Texture::Delete(pair.second.Handle);
+				for (auto const& pair : Animation::Storage)	Pipeline::Texture::Delete(pair.second.Handle);
+				return;
+			}
 		}
 	}
 }

@@ -108,9 +108,9 @@ bool DataManager::ExportLevel(std::string file_basename)
 
 void DataManager::UpdateLevel(std::string file_basename)
 {
-	ImportLevel(file_basename);
-	LevelInfo->isCleared = true;
-	ExportLevel(file_basename);
+	//ImportLevel(file_basename, "CustomLevels");
+	//LevelInfo->isCleared = true;
+	//ExportLevel(file_basename);
 }
 
 bool DataManager::ImportPlayer()
@@ -136,10 +136,10 @@ bool DataManager::ImportPlayer()
 	return true;
 }
 
-bool DataManager::ImportLevel(std::string file_basename)
+bool DataManager::ImportLevel(std::string file_basename, std::string sub_directory_name)
 {
 	std::ifstream fin;
-	std::string file = "Data/CustomLevels/" + file_basename + ".Level";
+	std::string file = "Data/" + sub_directory_name + "/" + file_basename + ".Level";
 
 	fin.open(file.c_str(), std::ios::in);
 

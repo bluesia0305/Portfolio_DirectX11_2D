@@ -8,7 +8,7 @@ Map::UnidirectionalMap::UnidirectionalMap()
 
 void Map::UnidirectionalMap::Start()
 {
-	LeadingNumber = 32;
+	LeadingNumber = 50;
 
 	for (auto elem : Tiles)
 	{
@@ -28,17 +28,23 @@ void Map::UnidirectionalMap::Update()
 		tempAlpha = (*LeadingTile)->GetAlphaLevel() + 8.0f * DELTA_TIME / SECONDS_PER_BEAT * (*CurrentTile)->GetMagnification();
 		(*LeadingTile)->SetAlphaLevel(BoundedFloat(tempAlpha, 0.0f, 1.0f));
 
-		tempAlpha = (*std::prev(LeadingTile, 1))->GetAlphaLevel() + 8.0f * DELTA_TIME / SECONDS_PER_BEAT * (*CurrentTile)->GetMagnification();
+		tempAlpha = (*std::prev(LeadingTile, 1))->GetAlphaLevel() + 4.0f * DELTA_TIME / SECONDS_PER_BEAT * (*CurrentTile)->GetMagnification();
 		(*std::prev(LeadingTile, 1))->SetAlphaLevel(BoundedFloat(tempAlpha, 0.0f, 1.0f));
 	}
 
 	if (CurrentTile != Tiles.begin())
 	{
-		tempAlpha = (*std::prev(CurrentTile, 1))->GetAlphaLevel() - 2.0f * DELTA_TIME / SECONDS_PER_BEAT * (*CurrentTile)->GetMagnification();
-		(*std::prev(CurrentTile, 1))->SetAlphaLevel(tempAlpha);
+		for (auto tile : Tiles)
+		{
+			if (tile == *CurrentTile)
+				break;
 
-		if (std::prev(CurrentTile, 1) != Tiles.begin())
-			(*std::prev(CurrentTile, 2))->SetAlphaLevel(0.0f);
+			if (tile->GetAlphaLevel() > 0.0f)
+			{
+				tempAlpha = tile->GetAlphaLevel() - 2.0f * DELTA_TIME / SECONDS_PER_BEAT * (*CurrentTile)->GetMagnification();
+				tile->SetAlphaLevel(BoundedFloat(tempAlpha, 0.0f, 1.0f));
+			}
+		}
 	}
 
 	// Draw in reverse order

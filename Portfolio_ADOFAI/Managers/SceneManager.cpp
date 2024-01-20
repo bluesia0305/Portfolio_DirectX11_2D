@@ -5,13 +5,15 @@
 SceneManager::SceneManager()
 {
 	Scenes.try_emplace("IntroLevel",  new IntroLevel (130, MOVEMENT_UNIT));
-	Scenes.try_emplace("Calibration", new Calibration(130, MOVEMENT_UNIT));
+	//Scenes.try_emplace("Calibration", new Calibration(130, MOVEMENT_UNIT));
 	Scenes.try_emplace("LevelEditor", new LevelEditor(100, MOVEMENT_UNIT_LEVEL));
 	Scenes.try_emplace("Customizing", new Customizing(130, MOVEMENT_UNIT));
 	CurrentScene	= "IntroLevel";
+	NumMainLevels = 0;
 	NumCustomLevels = 0;
 
-	GenerateCustomLevel();
+	GenerateMainLevels();
+	GenerateCustomLevels();
 }
 
 SceneManager::~SceneManager()
@@ -24,7 +26,47 @@ SceneManager::~SceneManager()
 
 void SceneManager::Initialize() { Scenes.at(CurrentScene)->Start(); }
 
-void SceneManager::GenerateCustomLevel()
+void SceneManager::GenerateMainLevels()
+{
+	std::string directory = "Data/Levels";
+	if (std::filesystem::exists(directory))
+	{
+		for (std::filesystem::path const& path : std::filesystem::recursive_directory_iterator(directory))
+		{
+			if (std::filesystem::is_regular_file(path))
+			{
+				std::string file = path.string();
+				std::replace(file.begin(), file.end(), '\\', '/');
+
+				size_t const start = file.find_last_of('/') + sizeof(char);
+				size_t const end = file.find_first_of('.');
+				file = file.substr(start, end - start);
+
+				INSTANCE(DataManager)->ImportLevel(file.c_str(), "Levels");
+
+				std::string scene_name = "Level" + std::to_string(++NumMainLevels);
+				Scenes.try_emplace(scene_name, new Level(file,
+														 INSTANCE(DataManager)->LevelInfo->ContentBGM,
+														 INSTANCE(DataManager)->LevelInfo->ContentBG,
+														 INSTANCE(DataManager)->LevelInfo->ContentPortal,
+														 INSTANCE(DataManager)->LevelInfo->TileTheme,
+														 INSTANCE(DataManager)->LevelInfo->HitSound,
+														 INSTANCE(DataManager)->LevelInfo->BGMArtist,
+														 INSTANCE(DataManager)->LevelInfo->BGMName,
+														 INSTANCE(DataManager)->LevelInfo->TextColor,
+														 INSTANCE(DataManager)->LevelInfo->BPM,
+														 INSTANCE(DataManager)->LevelInfo->BGMOffset,
+														 INSTANCE(DataManager)->LevelInfo->CountTicks,
+														 INSTANCE(DataManager)->LevelInfo->isCleared));
+
+				dynamic_cast<Level*>(Scenes.at(scene_name))->Import();
+				INSTANCE(DataManager)->ClearTilesInfo();
+			}
+		}
+	}
+}
+
+void SceneManager::GenerateCustomLevels()
 {
 	for (int i = 0; i < NumCustomLevels; ++i)
 	{
@@ -44,7 +86,7 @@ void SceneManager::GenerateCustomLevel()
 	
 	NumCustomLevels = 0;
 	std::string directory = "Data/CustomLevels";
-	if (std::filesystem::exists("Data/CustomLevels"))
+	if (std::filesystem::exists(directory))
 	{
 		for (std::filesystem::path const& path : std::filesystem::recursive_directory_iterator(directory))
 		{
@@ -57,7 +99,7 @@ void SceneManager::GenerateCustomLevel()
 				size_t const end = file.find_first_of('.');
 				file = file.substr(start, end - start);
 
-				INSTANCE(DataManager)->ImportLevel(file.c_str());
+				INSTANCE(DataManager)->ImportLevel(file.c_str(), "CustomLevels");
 
 				std::string scene_name = "Custom" + std::to_string(++NumCustomLevels);
 				Scenes.try_emplace(scene_name, new Level(file,
@@ -84,6 +126,7 @@ void SceneManager::GenerateCustomLevel()
 }
 
 Scene* SceneManager::GetCurrentScene() const { return Scenes.at(CurrentScene); }
+std::string SceneManager::GetCurrentSceneName() const { return CurrentScene; }
 
 void SceneManager::ChangeScene(std::string scene)
 {
